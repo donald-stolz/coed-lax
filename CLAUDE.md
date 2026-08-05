@@ -55,3 +55,13 @@ Husky runs `lint-staged` on `pre-commit` (`.husky/pre-commit`): ESLint `--fix` +
 ## Repo conventions
 
 - `design-inspiration/` holds reference screenshots/mockups for visual direction — not project source, don't treat it as code to build against unless asked.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as markdown files under `.scratch/<feature-slug>/`. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Single-context — one `CONTEXT.md` + `docs/adr/` at the repo root (neither exists yet; created lazily by domain-modeling). See `docs/agents/domain.md`.
