@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coed Lax ATX
 
-## Getting Started
+Marketing site for **Coed Lax ATX**, a coed pickup lacrosse group in Austin, TX. Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Vercel.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command            | Purpose                                          |
+| ------------------ | ------------------------------------------------ |
+| `npm run dev`      | Start the dev server (Turbopack)                 |
+| `npm run build`    | Production build                                 |
+| `npm run start`    | Run the production build                         |
+| `npm run lint`     | ESLint                                           |
+| `npm run format`   | Prettier, writes in place                        |
+| `npm run test:e2e` | Playwright suite (builds + starts the app first) |
 
-## Learn More
+Git hooks (Husky + lint-staged) run ESLint and Prettier on staged files automatically at commit time.
 
-To learn more about Next.js, take a look at the following resources:
+## SEO, AEO & GEO
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is built to be findable by traditional search (SEO), answer engines like featured snippets and voice assistants (AEO), and generative AI tools like ChatGPT and Perplexity (GEO). See **[docs/seo.md](docs/seo.md)** for the full strategy, what's implemented, and what to do when adding new pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Quick reference:
 
-## Deploy on Vercel
+- Central site facts (name, URL, description, keywords, social links) live in `src/lib/site-config.ts` — update there, not per-page.
+- Structured data (JSON-LD) is rendered via `src/components/json-ld.tsx`.
+- `src/app/robots.ts` and `src/app/sitemap.ts` are the Next.js Metadata Route conventions for `/robots.txt` and `/sitemap.xml`.
+- `public/llms.txt` is a plain-language summary of the site for AI crawlers.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploys to [Vercel](https://vercel.com). Vercel Analytics and Speed Insights are wired into the root layout to track Core Web Vitals, which factor into search ranking.

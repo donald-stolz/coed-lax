@@ -31,9 +31,21 @@ npx playwright test --ui   # interactive mode
 - Styling is Tailwind CSS v4 via `@tailwindcss/postcss` (no `tailwind.config`; v4 config lives in CSS through `src/app/globals.css`).
 - `AGENTS.md` at the repo root is auto-generated/re-written by `next dev` on each run (per-version breaking-change notes for this Next.js release) — commit it as-is when it changes; don't hand-edit its content. `CLAUDE.md` (this file) is separate and not auto-managed.
 
+## SEO, AEO & GEO
+
+The site is built to be findable by search engines, answer engines (featured snippets, voice), and generative AI tools (ChatGPT, Perplexity). Full strategy and rationale: **[docs/seo.md](docs/seo.md)**.
+
+- `src/lib/site-config.ts` is the single source of truth for name/URL/description/keywords/social — metadata, JSON-LD, and `llms.txt` should read from it, not hardcode strings.
+- Structured data is rendered via `src/components/json-ld.tsx`; `SportsOrganization` schema is site-wide (root layout), `FAQPage` schema is on `/faq`.
+- `src/app/sitemap.ts` is a manually maintained list — new pages must be added there by hand, they aren't auto-discovered.
+- `src/app/robots.ts` explicitly allows major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) as a deliberate GEO decision.
+- `public/llms.txt` is a plain-language site summary for AI crawlers/agents — keep it in sync with `site-config.ts` and the FAQ content.
+- `src/app/opengraph-image.tsx` generates the OG share image from text (no logo exists yet); replace with a static `opengraph-image.png` once real branding exists.
+- New pages should follow the checklist at the end of `docs/seo.md` (metadata, canonical, sitemap entry, structured data if applicable).
+
 ## Testing
 
-Playwright (`tests/*.spec.ts`) is the only test tooling, chosen deliberately even though this is a small marketing site — this repo doubles as a portfolio piece. `playwright.config.ts` runs `npm run build && npm run start` as the webServer, so tests exercise the production build, not `next dev`. Chromium-only project for now.
+Playwright (`tests/*.spec.ts`) is the only test tooling, chosen deliberately even though this is a small marketing site — this repo doubles as a portfolio piece. `playwright.config.ts` runs `npm run build && npm run start` as the webServer, so tests exercise the production build, not `next dev`. Chromium-only project for now. `tests/seo.spec.ts` covers the SEO surfaces (sitemap, robots, FAQ structured data) — extend it when adding new structured data or routes.
 
 ## Git hooks
 

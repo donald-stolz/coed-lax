@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { JsonLd } from '@/components/json-ld';
+import { siteConfig } from '@/lib/site-config';
 import './globals.css';
 
 const geistSans = Geist({
@@ -13,8 +17,42 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Coed Lax ATX',
-  description: 'Coed pickup lacrosse in Austin, TX.',
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} | Pickup Lacrosse in Austin, TX`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  openGraph: {
+    type: 'website',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | Pickup Lacrosse in Austin, TX`,
+    description: siteConfig.description,
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.name} | Pickup Lacrosse in Austin, TX`,
+    description: siteConfig.description,
+  },
+};
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsOrganization',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  sport: siteConfig.sport,
+  areaServed: siteConfig.areaServed,
+  ...(siteConfig.social.instagram && {
+    sameAs: [siteConfig.social.instagram],
+  }),
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
@@ -23,7 +61,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <JsonLd data={organizationJsonLd} />
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
