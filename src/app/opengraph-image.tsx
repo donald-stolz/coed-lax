@@ -1,12 +1,15 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 import { siteConfig } from '@/lib/site-config';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// Generated from text since there's no logo/brand asset yet — swap for a
-// designed image (and delete this file) once one exists.
 export default function OpengraphImage() {
+  const logoData = readFileSync(join(process.cwd(), 'public', siteConfig.logo));
+  const logoSrc = `data:image/jpeg;base64,${logoData.toString('base64')}`;
+
   return new ImageResponse(
     <div
       style={{
@@ -21,8 +24,17 @@ export default function OpengraphImage() {
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ fontSize: 80, fontWeight: 700 }}>{siteConfig.name}</div>
-      <div style={{ fontSize: 36, color: '#a1a1aa', marginTop: 16 }}>
+      <img
+        src={logoSrc}
+        alt=""
+        width={200}
+        height={200}
+        style={{ borderRadius: '50%' }}
+      />
+      <div style={{ fontSize: 64, fontWeight: 700, marginTop: 24 }}>
+        {siteConfig.name}
+      </div>
+      <div style={{ fontSize: 32, color: '#a1a1aa', marginTop: 12 }}>
         Pickup Lacrosse in Austin, TX
       </div>
     </div>,

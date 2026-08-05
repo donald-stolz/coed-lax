@@ -50,6 +50,7 @@ const organizationJsonLd = {
   description: siteConfig.description,
   sport: siteConfig.sport,
   areaServed: siteConfig.areaServed,
+  logo: `${siteConfig.url}${siteConfig.logo}`,
   ...(siteConfig.social.instagram && {
     sameAs: [siteConfig.social.instagram],
   }),

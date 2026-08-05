@@ -40,7 +40,8 @@ The site is built to be findable by search engines, answer engines (featured sni
 - `src/app/sitemap.ts` is a manually maintained list — new pages must be added there by hand, they aren't auto-discovered.
 - `src/app/robots.ts` explicitly allows major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) as a deliberate GEO decision.
 - `public/llms.txt` is a plain-language site summary for AI crawlers/agents — keep it in sync with `site-config.ts` and the FAQ content.
-- `src/app/opengraph-image.tsx` generates the OG share image from text (no logo exists yet); replace with a static `opengraph-image.png` once real branding exists.
+- `public/images/coed-lax-logo.jpg` is the only brand asset so far; `src/app/favicon.ico`, the homepage header, JSON-LD `logo`, and `src/app/opengraph-image.tsx` all derive from it via `siteConfig.logo`. Regenerating the favicon after a logo change requires the ImageMagick command in `docs/seo.md`.
+- Location is intentionally city-level only (`areaServed: "Austin, TX"`) — games rotate across fields with no fixed venue, so there's no address to encode in structured data.
 - New pages should follow the checklist at the end of `docs/seo.md` (metadata, canonical, sitemap entry, structured data if applicable).
 
 ## Testing

@@ -11,8 +11,8 @@ export const siteConfig = {
   ],
   areaServed: 'Austin, TX',
   sport: 'Lacrosse',
-  // TODO: add once created — no Instagram handle set yet.
+  logo: '/images/coed-lax-logo.jpg',
   social: {
-    instagram: '' as string,
+    instagram: 'https://www.instagram.com/coedlacrosseatx/',
   },
 } as const;

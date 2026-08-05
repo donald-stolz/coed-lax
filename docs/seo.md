@@ -14,7 +14,7 @@ Optimizing for casual/pickup framing: **"pickup lacrosse Austin"**, **"coed lacr
 
 ## Single source of truth: `src/lib/site-config.ts`
 
-Name, canonical URL, description, target keywords, area served, sport, and social links live in one place. Metadata, JSON-LD, and `llms.txt` should all read from here rather than hardcoding strings, so a change (like adding the Instagram handle once the account exists) only needs to happen once.
+Name, canonical URL, description, target keywords, area served, sport, logo path, and social links live in one place. Metadata, JSON-LD, and `llms.txt` should all read from here rather than hardcoding strings, so a change only needs to happen once.
 
 ## What's implemented
 
@@ -31,10 +31,10 @@ Every new page should export its own `metadata` (or `generateMetadata`) with at 
 
 Rendered via the `<JsonLd data={...} />` component (`src/components/json-ld.tsx`), which outputs a literal `<script type="application/ld+json">` per [Next.js's documented pattern](https://nextjs.org/docs/app/guides/json-ld).
 
-- **`SportsOrganization`** (root layout, site-wide): establishes this as a real entity — name, description, sport, area served, and `sameAs` links to social profiles once they exist. This is what lets AI engines and Google's Knowledge Graph confirm "Coed Lax ATX" refers to a specific, real thing.
+- **`SportsOrganization`** (root layout, site-wide): establishes this as a real entity — name, description, sport, area served, logo, and `sameAs` link to the [Instagram profile](https://www.instagram.com/coedlacrosseatx/). This is what lets AI engines and Google's Knowledge Graph confirm "Coed Lax ATX" refers to a specific, real thing.
 - **`FAQPage`** (`/faq`): each Q&A is machine-readable, which is what Google pulls into featured snippets and what AI answer engines quote directly. This is the single highest-leverage AEO pattern for a site this size — prioritize keeping it accurate over almost anything else here.
 
-When the group gets a fixed home field/park, upgrade the location from city-level (`areaServed: "Austin, TX"`) to a proper `SportsActivityLocation` with a street address — that's a meaningfully stronger local-SEO signal than a city name.
+Location stays city-level (`areaServed: "Austin, TX"`) by design, not as a placeholder — games rotate across fields/parks with no single fixed venue, so there's no fixed street address to encode in a `SportsActivityLocation`. If that ever changes (a permanent home field), that's when to add one.
 
 ### Sitemap & robots (`src/app/sitemap.ts`, `src/app/robots.ts`)
 
@@ -48,7 +48,17 @@ An emerging, informal convention (not a web standard yet) — a plain-language, 
 
 ### Open Graph image (`src/app/opengraph-image.tsx`)
 
-Generated dynamically from text (via `next/og`'s `ImageResponse`) since there's no logo or brand asset yet. Replace this with a real designed image once branding exists — delete the file and drop a static `opengraph-image.png` in `src/app/` instead, which Next.js will pick up automatically via the same file convention.
+Generated dynamically (via `next/og`'s `ImageResponse`), compositing the real logo (`public/images/coed-lax-logo.jpg`, read via `fs` and inlined as a base64 data URI — Satori/`ImageResponse` can't fetch from `public/` by URL at build time) with the site name and tagline. If a higher-resolution or redesigned logo shows up later, drop the replacement at the same path and this keeps working with no code change; only touch this file if the composition itself needs to change.
+
+### Brand assets
+
+`public/images/coed-lax-logo.jpg` is the Instagram profile logo (150×150, low-res since it's an Instagram export) and the only brand asset that exists so far. It's used in three places, all deriving from `siteConfig.logo`:
+
+- `src/app/favicon.ico` — regenerated from this file with `convert public/images/coed-lax-logo.jpg -define icon:auto-resize=16,32,48 src/app/favicon.ico` (ImageMagick). Re-run that command if the logo changes.
+- Homepage header (`src/app/page.tsx`).
+- `SportsOrganization.logo` in JSON-LD, and composited into the OG image (see above).
+
+If a proper full-resolution logo/brand kit shows up later, replace this file in place (same path) — the favicon needs manual regeneration via the `convert` command above, everything else picks it up automatically.
 
 ### Core Web Vitals (Vercel Analytics + Speed Insights)
 

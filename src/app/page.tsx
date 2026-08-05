@@ -1,9 +1,19 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import { siteConfig } from '@/lib/site-config';
 
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-center gap-6 bg-white px-6 py-32 text-center sm:px-16 dark:bg-black">
+        <Image
+          src={siteConfig.logo}
+          alt={`${siteConfig.name} logo`}
+          width={150}
+          height={150}
+          className="rounded-full"
+          priority
+        />
         <h1 className="max-w-xl text-4xl leading-tight font-semibold tracking-tight text-black dark:text-zinc-50">
           Coed Pickup Lacrosse in Austin, TX
         </h1>
