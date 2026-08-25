@@ -2,7 +2,7 @@ export const faqs = [
   {
     question: 'Is Coed Lax ATX a league or pickup play?',
     answer:
-      'Casual pickup games. There no teams, no rankings, and no season commitment. Just show up on a game day ready to play.',
+      'Casual pickup games. There are no teams, no rankings, and no season commitment. Just show up on a game day ready to play.',
   },
   {
     question: 'Are the rules different for coed play?',
