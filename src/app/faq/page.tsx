@@ -36,7 +36,7 @@ export default function FaqPage() {
       <div className="flex flex-col gap-8">
         <Link
           href="/"
-          className="text-paper/80 hover:text-paper inline-flex w-fit items-center gap-2 text-sm font-semibold drop-shadow transition-colors"
+          className="text-ink/70 hover:text-ink inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ export default function FaqPage() {
           Back
         </Link>
 
-        <h1 className="font-heading text-paper text-3xl font-bold tracking-tight drop-shadow">
+        <h1 className="font-heading text-ink text-3xl font-bold tracking-tight">
           Frequently asked questions
         </h1>
 
