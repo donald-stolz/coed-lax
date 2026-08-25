@@ -63,10 +63,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <footer className="text-paper/60 pt-4 text-center text-sm">
-        {siteConfig.name} &middot; {siteConfig.areaServed}
-      </footer>
     </>
   );
 }
