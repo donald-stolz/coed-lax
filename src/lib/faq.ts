@@ -1,10 +1,13 @@
-// Placeholder copy — realistic enough to exercise the FAQPage schema and
-// page pattern end-to-end. Replace with real answers before launch.
 export const faqs = [
   {
     question: 'Is Coed Lax ATX a league or pickup play?',
     answer:
       'Pickup play. There are no teams, no standings, and no season commitment — just show up on a scheduled day and get in a game.',
+  },
+  {
+    question: 'Are the rules different for coed play?',
+    answer:
+      "We play modified women's rules, with an emphasis on safe shooting and controlled checking. It's friendly pickup play, not competitive — we don't keep score. The rules doc has the full details.",
   },
   {
     question: 'What skill level do I need?',
@@ -14,16 +17,16 @@ export const faqs = [
   {
     question: 'How much does it cost?',
     answer:
-      'Pickup sessions are pay-to-play, typically a small per-session fee to cover field time. There is no season-long membership fee.',
+      "It's free — the group runs on donations rather than charging a per-session fee.",
   },
   {
     question: 'What gear do I need to bring?',
     answer:
-      'A stick, mouthguard, and eye protection at minimum. Loaner sticks are available for first-timers — just ask ahead of time.',
+      "No gear is required to show up. Cleats and a stick are ideal if you have them — loaner sticks are available, just DM us on Instagram ahead of time. Mouthguards and other protective equipment are encouraged but not required. Long poles aren't allowed.",
   },
   {
     question: 'Where and when do games happen?',
     answer:
-      'Games are in Austin, TX. Exact fields and times are posted ahead of each session — check the schedule before you head out.',
+      'Games are in Austin, TX, every Saturday morning from 10am–noon. Check Instagram for the specific field each week, and feel free to DM with any questions.',
   },
 ] as const;
