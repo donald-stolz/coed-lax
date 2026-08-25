@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/json-ld';
 import { CtaButton } from '@/components/cta-button';
+import { FaqList, FaqCardChevron, faqAccentColor } from '@/components/faq-list';
 import { faqs } from '@/lib/faq';
 import { siteConfig } from '@/lib/site-config';
 
@@ -26,17 +27,15 @@ const faqJsonLd = {
   })),
 };
 
-const accentColors = ['border-l-teal', 'border-l-pink', 'border-l-peach'];
-
 export default function FaqPage() {
   return (
     <>
       <JsonLd data={faqJsonLd} />
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         <Link
           href="/"
-          className="text-ink/70 hover:text-ink inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors"
+          className="text-ink/70 hover:text-ink bg-paper/70 inline-flex w-fit items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-sm font-semibold backdrop-blur-md transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,43 +55,38 @@ export default function FaqPage() {
           Back
         </Link>
 
-        <h1 className="font-heading text-ink text-3xl font-bold tracking-tight">
-          Frequently asked questions
+        <h1 className="font-heading text-ink bg-paper/70 w-full rounded-2xl border border-white/30 px-6 py-4 text-center text-5xl font-bold tracking-tight backdrop-blur-md">
+          FAQ
         </h1>
 
-        <dl className="flex flex-col gap-5">
-          {faqs.map((faq, i) => (
-            <div
-              key={faq.question}
-              className={`bg-paper/70 rounded-2xl border border-white/30 px-6 py-5 backdrop-blur-md ${accentColors[i % accentColors.length]} border-l-4`}
-            >
-              <dt className="text-ink mb-1.5 font-bold">{faq.question}</dt>
-              <dd className="text-warm-gray text-sm leading-relaxed">
-                {faq.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <FaqList faqs={faqs} />
 
-        <div className="bg-paper/70 flex flex-col items-center gap-4 rounded-2xl border border-white/30 px-6 py-6 text-center backdrop-blur-md">
-          <p className="text-ink text-sm font-semibold">Ready to play?</p>
-          <CtaButton
-            href={siteConfig.links.waiver}
-            icon="✍️"
-            variant="primary"
-            external
-          >
-            Sign Waiver
-          </CtaButton>
-          <CtaButton
-            href={siteConfig.social.instagram}
-            icon="📸"
-            variant="secondary"
-            external
-          >
-            Follow on Instagram
-          </CtaButton>
-        </div>
+        <details
+          className={`bg-paper/70 group rounded-2xl border border-white/30 px-6 py-5 backdrop-blur-md ${faqAccentColor(faqs.length)} border-l-4`}
+        >
+          <summary className="text-ink flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold marker:content-none">
+            Ready to play?
+            <FaqCardChevron />
+          </summary>
+          <div className="mt-4 flex flex-col items-center gap-4 text-center">
+            <CtaButton
+              href={siteConfig.social.instagram}
+              icon="📸"
+              variant="secondary"
+              external
+            >
+              Follow on Instagram
+            </CtaButton>
+            <CtaButton
+              href={siteConfig.links.waiver}
+              icon="✍️"
+              variant="primary"
+              external
+            >
+              Sign Waiver
+            </CtaButton>
+          </div>
+        </details>
       </div>
     </>
   );
