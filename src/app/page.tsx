@@ -4,10 +4,9 @@ import { siteConfig } from '@/lib/site-config';
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col">
-      <section className="relative flex flex-1 overflow-hidden px-6 py-20 text-center sm:px-16 sm:py-28">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,var(--pink)_0%,var(--teal)_55%,var(--peach)_100%)]" />
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6">
+    <>
+      <div className="flex flex-1 flex-col items-center justify-center">
+        <div className="bg-paper/70 flex flex-col items-center gap-6 rounded-2xl border border-white/30 px-6 py-10 text-center backdrop-blur-md sm:px-12 sm:py-14">
           <div className="bg-paper rounded-full p-2 shadow-lg">
             <Image
               src={siteConfig.logo}
@@ -19,12 +18,11 @@ export default function Home() {
             />
           </div>
           <h1 className="font-heading text-ink text-4xl font-bold tracking-tight sm:text-5xl">
-            Coed Pickup Lacrosse in Austin, TX
+            Coed Lacrosse ATX
           </h1>
-          <p className="text-ink/80 max-w-lg text-lg leading-relaxed">
-            Grab your crew or come solo — all skill levels welcome, from
-            first-timers to former college players. No team, no tryouts, just
-            drop in and play.
+          <p className="text-warm-gray max-w-lg text-lg leading-relaxed">
+            Pickup lacross in Austin Texas. All skill levels welcome. No team,
+            no tryouts, just drop in and play!
           </p>
           <div className="flex w-full flex-col items-center gap-4 pt-2">
             <CtaButton
@@ -64,11 +62,11 @@ export default function Home() {
             </CtaButton>
           </div>
         </div>
-      </section>
+      </div>
 
-      <footer className="px-6 py-4 text-center text-sm text-zinc-500 sm:px-16 dark:text-zinc-500">
+      <footer className="text-paper/60 pt-4 text-center text-sm">
         {siteConfig.name} &middot; {siteConfig.areaServed}
       </footer>
-    </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { JsonLd } from '@/components/json-ld';
+import { PhotoWall } from '@/components/photo-wall';
 import { siteConfig } from '@/lib/site-config';
 import './globals.css';
 
@@ -70,7 +71,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex min-h-full flex-col">
         <JsonLd data={organizationJsonLd} />
-        {children}
+        <PhotoWall />
+        <div className="relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col px-6 py-16 sm:px-16">
+          {children}
+        </div>
         <Analytics />
         <SpeedInsights />
       </body>
