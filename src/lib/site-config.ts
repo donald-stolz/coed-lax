@@ -15,4 +15,11 @@ export const siteConfig = {
   social: {
     instagram: 'https://www.instagram.com/coedlacrosseatx/',
   },
+  links: {
+    waiver:
+      'https://app.hyperwaiver.com/app/waiver/90ae514baca841ae952d2266cc24e615',
+    store: 'https://coedlacrosseatx.secondslide.io/',
+    rules:
+      'https://docs.google.com/document/d/1FVHm45GL1k2536TFXxJ8HjN3KbDx_VS3PNj6F8nb-nk/edit?usp=drivesdk',
+  },
 } as const;

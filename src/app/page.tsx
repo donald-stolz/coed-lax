@@ -38,9 +38,24 @@ export default function Home() {
             <CtaButton href="/faq" icon="❓" variant="primary">
               Read the FAQ
             </CtaButton>
-            {/* TODO: replace with the real waiver form/service URL once it exists */}
             <CtaButton
-              href="https://example.com/waiver"
+              href={siteConfig.links.store}
+              icon="🛒"
+              variant="secondary"
+              external
+            >
+              Shop the Store
+            </CtaButton>
+            <CtaButton
+              href={siteConfig.links.rules}
+              icon="📋"
+              variant="primary"
+              external
+            >
+              Read the Rules
+            </CtaButton>
+            <CtaButton
+              href={siteConfig.links.waiver}
               icon="✍️"
               variant="secondary"
               external
