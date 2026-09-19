@@ -16,6 +16,7 @@ export const siteConfig = {
     instagram: 'https://www.instagram.com/coedlacrosseatx/',
   },
   links: {
+    event: '/bridge',
     waiver:
       'https://app.hyperwaiver.com/app/waiver/90ae514baca841ae952d2266cc24e615',
     store: 'https://coedlacrosseatx.secondslide.io/',

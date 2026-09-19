@@ -26,6 +26,14 @@ export default function Home() {
           </p>
           <div className="flex w-full flex-col items-center gap-4 pt-2">
             <CtaButton
+              href={siteConfig.links.event}
+              icon="🏆"
+              variant="primary"
+              external
+            >
+              Goals for Good
+            </CtaButton>
+            <CtaButton
               href={siteConfig.social.instagram}
               icon="📸"
               variant="secondary"
