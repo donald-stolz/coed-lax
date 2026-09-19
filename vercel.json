@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/bridge",
+      "destination": "https://www.eventbrite.com/e/goals-for-good-presented-by-co-ed-lacrosse-bridge-lacrosse-registration-2000729171811",
+      "permanent": false
+    }
+  ]
+}
